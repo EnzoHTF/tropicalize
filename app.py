@@ -1,4 +1,8 @@
 import os
+# Otimização para o Render (evita que a IA trave o processador fraquinho)
+os.environ["OMP_NUM_THREADS"] = "1"
+os.environ["TOKENIZERS_PARALLELISM"] = "false"
+
 import chromadb
 import gradio as gr
 from openai import OpenAI
@@ -13,15 +17,13 @@ llm = OpenAI(
     base_url="https://api.groq.com/openai/v1",
 )
 
+# Carrega o modelo e o banco
 model = SentenceTransformer("all-MiniLM-L6-v2")
-
 client = chromadb.PersistentClient(path="./chroma_db")
 collection = client.get_collection("yc_startups")
 
 CSS = """
 .gradio-container { max-width: 900px !important; margin: auto; }
-
-/* Header principal */
 .header {
     text-align: center;
     padding: 1.5rem;
@@ -31,8 +33,6 @@ CSS = """
     color: white;
 }
 .header h1 { color: white; font-size: 2.5rem; margin-bottom: 0.5rem; }
-
-/* Estilo dos botões de exemplo */
 .examples {
     margin-top: 15px;
     display: flex;
@@ -71,13 +71,11 @@ def responder_chat(mensagem, historico):
         yield "⚠️ Digite uma pergunta para começar."
         return
 
-    # 1. TRADUÇÃO (PT -> EN)
     try:
         mensagem_en = GoogleTranslator(source='auto', target='en').translate(mensagem)
     except Exception:
         mensagem_en = mensagem
 
-    # 2. RETRIEVAL
     q_emb = model.encode(mensagem_en).tolist()
     res = collection.query(query_embeddings=[q_emb], n_results=8)
 
@@ -86,7 +84,6 @@ def responder_chat(mensagem, historico):
         for doc, meta in zip(res["documents"][0], res["metadatas"][0])
     )
 
-    # 3. AUGMENTATION
     prompt = f"""Você é um analista de oportunidades de negócio especializado em "tropicalização" de startups (adaptação de modelos internacionais ao Brasil).
 
 O usuário quer saber sobre: "{mensagem}" (que em inglês significa: "{mensagem_en}")
@@ -112,7 +109,6 @@ Responda OBRIGATORIAMENTE EM PORTUGUÊS seguindo esta estrutura:
 Seja direto, sem floreio. Não invente startups que não estão na lista. Se a lista não for suficiente, diga isso honestamente.
 """
 
-    # 4. GENERATION
     try:
         resposta = llm.chat.completions.create(
             model="openai/gpt-oss-120b",
@@ -129,12 +125,9 @@ Seja direto, sem floreio. Não invente startups que não estão na lista. Se a l
     except Exception as e:
         yield f"⚠️ Erro ao consultar a IA: {e}"
 
-
-# ⚙️ Configuração da interface
 demo = gr.ChatInterface(
     fn=responder_chat,
     title="🌎 Tropicalize",
-    # 👇 AQUI ESTÁ O HTML QUE DEIXA O SUBTÍTULO CENTRALIZADO E MAIOR
     description="""
     <div style="text-align: center; margin-bottom: 20px;">
         <h2 style="font-size: 1.6rem; font-weight: 700; color: #4b5563; margin-bottom: 10px;">
@@ -158,7 +151,6 @@ demo = gr.ChatInterface(
         scale=7
     ),
 )
-
 
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 7860))
