@@ -159,10 +159,7 @@ demo = gr.ChatInterface(
     ),
 )
 
+
 if __name__ == "__main__":
-    # No Render, a porta é definida pela variável de ambiente PORT.
-    # O 'share=True' não é mais necessário, pois o Render já fornece um link público.
-    demo.launch(
-        server_name="0.0.0.0", 
-        server_port=int(os.environ.get("PORT", 7860))
-    )
+    port = int(os.environ.get("PORT", 7860))
+    demo.launch(server_name="0.0.0.0", server_port=port)
