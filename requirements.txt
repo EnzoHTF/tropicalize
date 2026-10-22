@@ -1,6 +1,5 @@
-gradio
+gradio==5.20.1
 chromadb
 sentence-transformers
 openai
 deep-translator
-audioop-lts
