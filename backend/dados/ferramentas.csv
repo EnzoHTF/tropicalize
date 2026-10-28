@@ -1,0 +1,55 @@
+nome;categoria;faixa;site;preco_texto;descricao
+Carrd;site;ate_5k;https://carrd.co;Plano grátis e planos anuais baratos;Landing pages simples de uma página, ideal para testar uma ideia
+Framer;site;ate_5k;https://www.framer.com;Plano grátis e planos mensais;Sites e landing pages com design profissional sem programar
+Webflow;site;ate_5k;https://webflow.com;Plano grátis e planos mensais;Sites completos e CMS sem código, com controle fino de design
+WordPress;site;ate_5k;https://wordpress.org;Software livre (paga só a hospedagem);Sites, blogs e lojas (com WooCommerce) com grande ecossistema de plugins
+Hostinger;hospedagem;ate_5k;https://www.hostinger.com.br;Planos mensais baratos;Hospedagem de sites e domínios com suporte em português
+Vercel;hospedagem;ate_5k;https://vercel.com;Plano grátis e planos por uso;Hospedagem de aplicações web modernas (Next.js, React)
+Cloudflare;infraestrutura;ate_5k;https://www.cloudflare.com;Plano grátis generoso;DNS, CDN, proteção e hospedagem de sites estáticos
+Nuvemshop;loja virtual;ate_5k;https://www.nuvemshop.com.br;Plano grátis e planos mensais;Plataforma brasileira de loja virtual integrada a meios de pagamento e frete
+Shopify;loja virtual;ate_5k;https://www.shopify.com/br;Planos mensais;Plataforma global de e-commerce com muitos aplicativos
+Hotmart;infoprodutos;ate_5k;https://hotmart.com;Taxa por venda;Venda de cursos, e-books e assinaturas digitais
+Mercado Pago;pagamentos;ate_5k;https://www.mercadopago.com.br;Taxa por transação;Pagamentos com Pix, cartão e boleto, links de pagamento e maquininha
+Asaas;pagamentos;ate_5k;https://www.asaas.com;Taxa por cobrança;Cobranças recorrentes, boletos, Pix e emissão de notas fiscais
+Pagar.me;pagamentos;5k_50k;https://pagar.me;Taxa por transação;Gateway de pagamentos para produtos digitais e marketplaces com split
+Stripe;pagamentos;ate_5k;https://stripe.com/br;Taxa por transação;Pagamentos online e assinaturas, forte para vendas internacionais
+Bubble;no-code app;ate_5k;https://bubble.io;Plano grátis e planos mensais;Aplicativos web completos sem programar (banco de dados, lógica e telas)
+FlutterFlow;no-code app;ate_5k;https://flutterflow.io;Plano grátis e planos mensais;Aplicativos mobile nativos com construtor visual e código exportável
+Glide;no-code app;ate_5k;https://www.glideapps.com;Plano grátis e planos mensais;Apps internos e simples a partir de planilhas
+Softr;no-code app;ate_5k;https://www.softr.io;Plano grátis e planos mensais;Portais de clientes e apps internos sobre Airtable ou banco de dados
+Supabase;banco de dados;ate_5k;https://supabase.com;Plano grátis e planos por uso;Banco Postgres, autenticação e armazenamento para apps
+Firebase;banco de dados;ate_5k;https://firebase.google.com;Plano grátis e cobrança por uso;Backend do Google para apps: banco, autenticação e notificações
+Airtable;banco de dados;ate_5k;https://www.airtable.com;Plano grátis e planos por usuário;Planilha-banco de dados para organizar operações
+Notion;gestão;ate_5k;https://www.notion.so;Plano grátis e planos por usuário;Documentos, wiki e gestão de projetos da equipe
+Trello;gestão;ate_5k;https://trello.com;Plano grátis e planos por usuário;Quadros kanban para tarefas e processos
+Google Workspace;produtividade;ate_5k;https://workspace.google.com;Planos por usuário;E-mail com domínio próprio, documentos e agenda
+Make;automação;ate_5k;https://www.make.com;Plano grátis e planos por uso;Automação visual entre aplicativos sem código
+Zapier;automação;ate_5k;https://zapier.com;Plano grátis e planos por uso;Automação entre milhares de aplicativos
+n8n;automação;ate_5k;https://n8n.io;Código aberto (auto-hospedado) ou nuvem paga;Automação de fluxos com opção de hospedar por conta própria
+HubSpot CRM;crm;ate_5k;https://www.hubspot.com/pt-br;Plano grátis e planos pagos;CRM para vendas, marketing e atendimento
+RD Station;crm;ate_5k;https://www.rdstation.com;Planos mensais;Automação de marketing e CRM brasileiros
+Pipedrive;crm;ate_5k;https://www.pipedrive.com/pt;Planos por usuário;CRM focado em funil de vendas
+Brevo;email marketing;ate_5k;https://www.brevo.com/pt;Plano grátis e planos por volume;E-mail marketing, SMS e WhatsApp
+Mailchimp;email marketing;ate_5k;https://mailchimp.com;Plano grátis e planos por contatos;E-mail marketing e automações
+WhatsApp Business;atendimento;ate_5k;https://business.whatsapp.com;App grátis (API cobrada por conversa);Atendimento e vendas pelo WhatsApp, canal principal no Brasil
+Blip;atendimento;5k_50k;https://www.blip.ai;Planos sob consulta;Chatbots e atendimento em WhatsApp e outros canais
+Zendesk;atendimento;acima_50k;https://www.zendesk.com.br;Planos por agente;Central de atendimento completa para operações maiores
+Canva;design;ate_5k;https://www.canva.com;Plano grátis e plano Pro;Design de posts, apresentações e materiais de marketing
+Figma;design;ate_5k;https://www.figma.com;Plano grátis e planos por editor;Design de interfaces e protótipos de produto
+Bling;erp;ate_5k;https://www.bling.com.br;Planos mensais;ERP brasileiro para estoque, vendas e notas fiscais
+Omie;erp;ate_5k;https://www.omie.com.br;Planos mensais;ERP brasileiro para gestão financeira e fiscal
+Conta Azul;erp;ate_5k;https://contaazul.com;Planos mensais;Gestão financeira e emissão de notas para pequenas empresas
+Contabilizei;contabilidade;ate_5k;https://www.contabilizei.com.br;Mensalidade;Abertura de empresa e contabilidade online
+Google Analytics;analytics;ate_5k;https://analytics.google.com;Grátis;Métricas de acesso e conversão do site ou app
+Looker Studio;analytics;ate_5k;https://lookerstudio.google.com;Grátis;Painéis de indicadores conectados a planilhas e bancos
+Metabase;analytics;ate_5k;https://www.metabase.com;Código aberto ou nuvem paga;BI para consultar o banco de dados e montar painéis
+Tally;formulários;ate_5k;https://tally.so;Plano grátis generoso;Formulários e pesquisas para validar ideias e captar leads
+Typeform;formulários;ate_5k;https://www.typeform.com/pt;Plano grátis e planos mensais;Formulários conversacionais e pesquisas
+Calendly;agendamento;ate_5k;https://calendly.com;Plano grátis e planos por usuário;Agendamento de reuniões e entrevistas com clientes
+Claude API;ia;ate_5k;https://www.anthropic.com/api;Cobrança por uso (tokens);IA para atendimento, análise de textos e automações inteligentes
+Workana;contratação;5k_50k;https://www.workana.com;Paga por projeto;Marketplace de freelancers latino-americanos (devs, designers)
+99Freelas;contratação;5k_50k;https://www.99freelas.com.br;Paga por projeto;Marketplace brasileiro de freelancers
+Next.js;desenvolvimento;acima_50k;https://nextjs.org;Código aberto;Framework para desenvolvimento sob medida de sites e apps web (exige equipe técnica)
+AWS;infraestrutura;acima_50k;https://aws.amazon.com/pt;Cobrança por uso;Nuvem completa para produtos com escala e requisitos técnicos altos
+Salesforce;crm;acima_50k;https://www.salesforce.com/br;Planos por usuário;CRM corporativo para operações comerciais grandes
+TOTVS;erp;acima_50k;https://www.totvs.com;Sob consulta;ERP corporativo brasileiro para empresas médias e grandes

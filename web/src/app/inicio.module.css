@@ -1,0 +1,36 @@
+.hero { padding: 56px 0 72px; text-align: center; }
+.hero h1 { font-size: clamp(2.2rem, 6vw, 4rem); line-height: 1.08; letter-spacing: -0.02em; max-width: 860px; margin: 18px auto 0; }
+.hero h1 em { font-style: normal; color: var(--folha); }
+.sub { color: var(--suave); font-size: 1.12rem; max-width: 640px; margin: 22px auto 36px; }
+.acoes { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+
+.secao { padding: 64px 0; }
+.tituloSecao { font-size: clamp(1.7rem, 4vw, 2.3rem); text-align: center; margin-bottom: 10px; }
+.descSecao { text-align: center; color: var(--suave); max-width: 600px; margin: 0 auto 40px; }
+
+.modos { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+.modo { display: block; transition: border-color .2s, transform .2s; }
+.modo:hover { border-color: var(--folha); transform: translateY(-2px); }
+.modo .icone { font-size: 1.8rem; }
+.modo small { display: block; color: var(--folha); font-weight: 600; font-size: 0.82rem; text-transform: uppercase; letter-spacing: .04em; margin-top: 10px; }
+.modo h3 { font-size: 1.2rem; margin: 2px 0 6px; }
+.modo p { color: var(--suave); font-size: 0.97rem; }
+
+.faixa { background: var(--verde); color: #fff; border-radius: 28px; padding: 48px; display: grid; grid-template-columns: 1fr 1.2fr; gap: 40px; align-items: center; }
+.faixa h2 { color: #fff; font-size: clamp(1.6rem, 3.5vw, 2.1rem); margin-bottom: 12px; }
+.faixa p { color: rgba(255,255,255,.78); margin-bottom: 24px; }
+.blocos { display: grid; gap: 10px; }
+.bloco { background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.12); border-radius: 16px; padding: 16px 18px; }
+.bloco b { display: block; color: var(--sol); font-size: 0.95rem; }
+.bloco span { color: rgba(255,255,255,.78); font-size: 0.92rem; }
+
+.noticias { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+.noticia h3 { font-size: 1.02rem; margin: 8px 0 6px; }
+.noticia p { color: var(--suave); font-size: 0.9rem; }
+
+@media (max-width: 820px) {
+  .modos, .noticias { grid-template-columns: 1fr; }
+  .faixa { grid-template-columns: 1fr; padding: 28px 20px; gap: 24px; }
+  .hero { padding: 32px 0 48px; }
+  .secao { padding: 44px 0; }
+}

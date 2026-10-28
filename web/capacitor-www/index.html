@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Sem conexão · Tropicalize</title>
+  <style>
+    :root { --fundo: #FBF7EF; --texto: #1C2A24; --suave: #5B6B63; --titulo: #0E3B2C; }
+    @media (prefers-color-scheme: dark) { :root { --fundo: #0F1714; --texto: #E7EEE9; --suave: #9BAAA2; --titulo: #D9F2E5; } }
+    body { margin: 0; min-height: 100vh; display: grid; place-items: center; padding: 16px; text-align: center;
+           font-family: system-ui, sans-serif; background: var(--fundo); color: var(--texto); }
+    h1 { color: var(--titulo); font-family: Georgia, serif; }
+    p { color: var(--suave); }
+    button { margin-top: 12px; padding: 12px 22px; border-radius: 999px; border: none; background: #0E3B2C; color: #fff; font: inherit; font-weight: 600; }
+  </style>
+</head>
+<body>
+  <main>
+    <img src="logo.svg" alt="" width="64" height="64">
+    <h1>Você está sem conexão</h1>
+    <p>Os relatórios gerados ficam salvos na sua conta. Assim que a internet voltar, é só tentar de novo.</p>
+    <button onclick="location.reload()">Tentar de novo</button>
+  </main>
+</body>
+</html>

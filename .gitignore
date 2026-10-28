@@ -11,3 +11,6 @@ __pycache__/
 # Pastas de sistema
 .DS_Store
 Thumbs.db
+# Segredos e dependências
+.env
+node_modules/

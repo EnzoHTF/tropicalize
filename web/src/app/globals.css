@@ -1,0 +1,135 @@
+:root {
+  --verde: #0E3B2C;
+  --verde-2: #17513D;
+  --folha: #35B37A;
+  --sol: #F4B740;
+  --creme: #FBF7EF;
+  --texto: #1C2A24;
+  --suave: #5B6B63;
+  --borda: #E6DFD1;
+  --card: #FFFFFF;
+  --titulo: var(--verde);
+  --perigo: #B42318;
+  --fonte-titulo: var(--font-fraunces), Georgia, serif;
+  --fonte-texto: var(--font-inter), system-ui, sans-serif;
+  --topo-seguro: env(safe-area-inset-top, 0px);
+  --base-segura: env(safe-area-inset-bottom, 0px);
+  color-scheme: light;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --creme: #0F1714;
+    --texto: #E7EEE9;
+    --suave: #9BAAA2;
+    --borda: #26332D;
+    --card: #16211C;
+    --titulo: #D9F2E5;
+    --perigo: #F97066;
+    color-scheme: dark;
+  }
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+body {
+  font-family: var(--fonte-texto);
+  background: var(--creme);
+  color: var(--texto);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  padding-top: var(--topo-seguro);
+  padding-bottom: var(--base-segura);
+  min-height: 100dvh;
+}
+a { color: inherit; text-decoration: none; }
+img { max-width: 100%; }
+button, input, textarea, select { font: inherit; color: inherit; }
+
+.wrap { max-width: 1080px; margin: 0 auto; padding: 0 16px; }
+.wrap-estreito { max-width: 760px; margin: 0 auto; padding: 0 16px; }
+
+h1, h2, h3 { color: var(--titulo); line-height: 1.2; }
+h1, h2 { font-family: var(--fonte-titulo); }
+
+/* Navegação */
+.topo { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 18px 0; }
+.marca { display: flex; align-items: center; gap: 10px; font-family: var(--fonte-titulo); font-size: 1.35rem; font-weight: 700; color: var(--titulo); }
+.marca img { width: 34px; height: 34px; }
+.topo-links { display: flex; align-items: center; gap: 18px; font-size: 0.95rem; color: var(--suave); }
+.topo-links a:hover { color: var(--titulo); }
+
+/* Botões */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  padding: 12px 22px; border-radius: 999px; font-weight: 600; font-size: 0.95rem;
+  background: var(--verde); color: #fff; border: none; cursor: pointer;
+  transition: background .2s, transform .2s, opacity .2s;
+}
+.btn:hover { background: var(--verde-2); }
+.btn:disabled { opacity: .55; cursor: not-allowed; }
+.btn-claro { background: transparent; color: var(--titulo); border: 1.5px solid currentColor; }
+.btn-claro:hover { background: rgba(53, 179, 122, .12); }
+.btn-sol { background: var(--sol); color: var(--verde); }
+.btn-sol:hover { background: #F7C766; }
+.btn-pequeno { padding: 8px 14px; font-size: 0.88rem; }
+
+/* Cartões e formulários */
+.cartao { background: var(--card); border: 1px solid var(--borda); border-radius: 20px; padding: 24px; }
+.grade { display: grid; gap: 16px; grid-template-columns: repeat(auto-fill, minmax(min(100%, 240px), 1fr)); }
+.campo { display: grid; gap: 6px; margin-bottom: 16px; }
+.campo label { font-weight: 600; font-size: 0.95rem; }
+.campo small { color: var(--suave); font-size: 0.85rem; }
+.campo input, .campo textarea, .campo select {
+  width: 100%; padding: 12px 14px; border-radius: 12px; border: 1.5px solid var(--borda);
+  background: var(--card); outline: none; font-size: 1rem;
+}
+.campo input:focus, .campo textarea:focus, .campo select:focus { border-color: var(--folha); }
+.campo textarea { min-height: 96px; resize: vertical; }
+.campo-check { display: flex; gap: 10px; align-items: flex-start; margin-bottom: 16px; }
+.campo-check input { width: 20px; height: 20px; margin-top: 3px; accent-color: var(--folha); }
+
+.erro { color: var(--perigo); background: rgba(180, 35, 24, .08); padding: 12px 16px; border-radius: 12px; margin: 12px 0; }
+.suave { color: var(--suave); }
+.selo {
+  display: inline-block; padding: 4px 12px; border-radius: 999px; font-size: 0.8rem; font-weight: 600;
+  background: rgba(53, 179, 122, .14); color: var(--titulo);
+}
+
+/* Markdown dos relatórios e do blog */
+.markdown { font-size: 1.02rem; overflow-wrap: anywhere; }
+.markdown h2 { font-size: 1.4rem; margin: 28px 0 10px; }
+.markdown h3 { font-size: 1.1rem; margin: 20px 0 8px; }
+.markdown p, .markdown ul, .markdown ol, .markdown table { margin-bottom: 14px; }
+.markdown ul, .markdown ol { padding-left: 22px; }
+.markdown li { margin-bottom: 4px; }
+.markdown a { color: var(--folha); text-decoration: underline; text-underline-offset: 2px; }
+.markdown table { display: block; overflow-x: auto; border-collapse: collapse; font-size: 0.92rem; }
+.markdown th, .markdown td { border: 1px solid var(--borda); padding: 8px 10px; text-align: left; vertical-align: top; }
+.markdown th { background: rgba(53, 179, 122, .1); }
+.markdown blockquote { border-left: 3px solid var(--folha); padding-left: 14px; color: var(--suave); }
+
+.status-vivo { display: flex; align-items: center; gap: 10px; color: var(--suave); font-size: 0.92rem; margin: 10px 0; }
+.status-vivo::before {
+  content: ""; width: 10px; height: 10px; border-radius: 50%; background: var(--folha);
+  animation: pulsar 1.2s ease-in-out infinite;
+}
+@keyframes pulsar { 50% { opacity: .3; transform: scale(.7); } }
+@media (prefers-reduced-motion: reduce) { .status-vivo::before { animation: none; } }
+
+/* Barra inferior do app (celular) */
+.barra-app {
+  position: fixed; left: 0; right: 0; bottom: 0; z-index: 10;
+  display: none; justify-content: space-around; padding: 8px 4px calc(8px + var(--base-segura));
+  background: var(--card); border-top: 1px solid var(--borda);
+}
+.barra-app a { display: grid; justify-items: center; font-size: 0.72rem; color: var(--suave); gap: 2px; min-width: 64px; }
+.barra-app a[aria-current="page"] { color: var(--titulo); font-weight: 600; }
+.barra-app span { font-size: 1.25rem; line-height: 1; }
+@media (max-width: 720px) {
+  .barra-app { display: flex; }
+  .com-barra { padding-bottom: calc(80px + var(--base-segura)); }
+  .topo-links .so-desktop { display: none; }
+}
+
+footer.rodape { padding: 40px 0 56px; color: var(--suave); font-size: 0.88rem; display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; border-top: 1px solid var(--borda); margin-top: 48px; }

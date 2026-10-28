@@ -1,0 +1,61 @@
+tipo;nome;paises;cidade;estagios;nao_diluitivo;site;tese
+fundo_vc;Kaszek;Brazil|Latin America;São Paulo;seed|series_a|series_b;false;https://www.kaszek.com;Fundo de venture capital focado em startups de tecnologia da América Latina
+fundo_vc;monashees;Brazil|Latin America;São Paulo;seed|series_a;false;https://www.monashees.com;Fundo de venture capital brasileiro de estágio inicial
+fundo_vc;Canary;Brazil|Latin America;São Paulo;pre_seed|seed;false;https://www.canary.com.br;Fundo early stage brasileiro focado em pre-seed e seed
+fundo_vc;Valor Capital Group;Brazil|United States|Latin America;São Paulo;;false;https://www.valorcapitalgroup.com;Fundo de venture capital que investe entre Estados Unidos e América Latina
+fundo_vc;Astella;Brazil|Latin America;São Paulo;;false;;Fundo de venture capital brasileiro de estágio inicial
+fundo_vc;Atlantico;Brazil|Latin America;;;false;https://www.atlantico.vc;Fundo de venture capital focado em América Latina
+fundo_vc;MAYA Capital;Brazil|Latin America;São Paulo;pre_seed|seed;false;https://www.maya.capital;Fundo early stage focado em fundadores latino-americanos
+fundo_vc;ONEVC;Brazil|Latin America;São Paulo;seed|series_a;false;https://www.onevc.vc;Fundo de venture capital early stage
+fundo_vc;Bossanova Investimentos;Brazil;São Paulo;pre_seed|seed;false;;Investidora de pre-seed com grande número de startups no portfólio
+fundo_vc;DOMO.VC;Brazil;São Paulo;;false;;Gestora de venture capital brasileira
+fundo_vc;Igah Ventures;Brazil|Latin America;São Paulo;;false;;Gestora de venture capital brasileira
+fundo_vc;Iporanga Ventures;Brazil;São Paulo;;false;;Gestora de venture capital brasileira
+fundo_vc;e.bricks Ventures;Brazil;São Paulo;;false;;Fundo de venture capital brasileiro
+fundo_vc;Redpoint eventures;Brazil;São Paulo;;false;;Fundo de venture capital brasileiro
+fundo_vc;Positive Ventures;Brazil;São Paulo;;false;;Fundo de venture capital de impacto
+fundo_vc;Vox Capital;Brazil;São Paulo;;false;;Gestora de investimentos de impacto
+fundo_vc;SP Ventures;Brazil|Latin America;São Paulo;;false;;Gestora de venture capital com foco em agtech e foodtech
+fundo_vc;Big Bets;Brazil;São Paulo;;false;;Investidora brasileira de venture capital
+fundo_vc;Norte Ventures;Brazil;;;false;;Gestora de venture capital brasileira
+fundo_vc;Alexia Ventures;Brazil|Latin America;São Paulo;;false;;Gestora de venture capital brasileira
+fundo_vc;Upload Ventures;Brazil|Latin America;;;false;;Fundo de venture capital
+fundo_vc;Crescera Capital;Brazil;Rio de Janeiro;;false;;Gestora de venture capital e growth
+fundo_vc;Kinea Ventures;Brazil;São Paulo;;false;;Braço de venture capital da gestora Kinea
+fundo_vc;NXTP Ventures;Latin America|Argentina|Brazil;Buenos Aires;;false;;Fundo de venture capital latino-americano focado em B2B
+fundo_vc;Magma Partners;Latin America|Chile|Mexico;;;false;;Fundo de venture capital focado em América Latina
+fundo_vc;ALLVP;Mexico|Latin America;Cidade do México;;false;;Fundo de venture capital mexicano
+fundo_vc;QED Investors;United States|Latin America|Brazil;;;false;https://www.qedinvestors.com;Fundo de venture capital focado em fintechs
+fundo_vc;SoftBank Latin America Fund;Latin America|Brazil;;;false;;Fundo do SoftBank dedicado à América Latina
+fundo_vc;Andreessen Horowitz (a16z);United States|Global;Menlo Park;;false;https://a16z.com;Fundo de venture capital americano multiestágio
+fundo_vc;Sequoia Capital;United States|Global;Menlo Park;;false;https://www.sequoiacap.com;Fundo de venture capital americano multiestágio
+fundo_vc;Accel;United States|Global;Palo Alto;;false;https://www.accel.com;Fundo de venture capital multiestágio
+anjos;Anjos do Brasil;Brazil;São Paulo;pre_seed|seed;false;https://www.anjosdobrasil.net;Rede de investidores-anjo que conecta startups a investidores pessoa física
+anjos;Gávea Angels;Brazil;Rio de Janeiro;pre_seed|seed;false;;Associação de investidores-anjo do Rio de Janeiro
+anjos;BR Angels;Brazil;São Paulo;pre_seed|seed;false;;Grupo de investidores-anjo
+aceleradora;ACE Startups;Brazil;São Paulo;pre_seed|seed;false;;Aceleradora e investidora de startups em estágio inicial
+aceleradora;Startup Farm;Brazil;São Paulo;pre_seed|seed;false;;Aceleradora brasileira de startups
+aceleradora;Darwin Startups;Brazil;Florianópolis;pre_seed|seed;false;;Aceleradora brasileira de startups
+aceleradora;Y Combinator;Global;San Francisco;pre_seed|seed;false;https://www.ycombinator.com;Aceleradora americana que investe em startups do mundo todo em programas semestrais
+aceleradora;Techstars;Global;;pre_seed|seed;false;https://www.techstars.com;Rede global de programas de aceleração
+aceleradora;500 Global;Global;San Francisco;pre_seed|seed;false;https://500.co;Investidora e aceleradora global de estágio inicial
+aceleradora;Plug and Play;Global|Brazil;Sunnyvale;seed|series_a;false;https://www.plugandplaytechcenter.com;Plataforma de inovação que conecta startups a corporações
+aceleradora;Antler;Global|Brazil;;pre_seed;false;https://www.antler.co;Investidora que forma times fundadores e investe desde o dia zero
+aceleradora;Entrepreneur First;Global;Londres;pre_seed;false;https://www.joinef.com;Programa que reúne indivíduos para formar startups e investe nelas
+aceleradora;Founder Institute;Global|Brazil;;pre_seed;false;https://fi.co;Programa de pré-aceleração para fundadores em estágio de ideia
+corporativo;Cubo Itaú;Brazil;São Paulo;;false;;Hub de inovação do Itaú que conecta startups a grandes empresas
+corporativo;Wayra Brasil;Brazil;São Paulo;seed|series_a;false;;Hub de inovação aberta e corporate venture da Vivo/Telefônica
+corporativo;Liga Ventures;Brazil;São Paulo;;false;;Programas de inovação aberta entre startups e corporações
+programa;Distrito;Brazil;São Paulo;;false;;Hub de inovação e plataforma de dados sobre startups
+programa;Endeavor Brasil;Brazil;São Paulo;series_a|series_b|growth;false;;Rede de apoio a empreendedores de alto impacto em fase de escala
+programa;Google for Startups Accelerator;Global|Latin America|Brazil;;seed|series_a;true;;Programa de aceleração do Google sem participação societária
+programa;Microsoft for Startups Founders Hub;Global;;pre_seed|seed;true;;Créditos de nuvem e benefícios da Microsoft para startups
+programa;AWS Activate;Global;;pre_seed|seed|series_a;true;;Créditos de nuvem da AWS para startups
+programa;NVIDIA Inception;Global;;;true;;Programa da NVIDIA para startups de IA e computação
+governo;InovAtiva Brasil;Brazil;;pre_seed|seed;true;;Programa público e gratuito de aceleração de startups
+governo;BNDES Garagem;Brazil;Rio de Janeiro;pre_seed|seed;true;;Programa do BNDES de apoio a startups
+governo;Sebrae Startups;Brazil;;pre_seed|seed;true;;Programas do Sebrae para startups e pequenos negócios inovadores
+governo;FAPESP PIPE;Brazil;São Paulo;pre_seed|seed;true;;Subvenção da FAPESP para pesquisa inovativa em pequenas empresas do estado de São Paulo
+governo;Finep;Brazil;Rio de Janeiro;;true;;Agência federal de fomento à inovação com subvenção e crédito
+governo;Programa Centelha;Brazil;;pre_seed;true;;Programa nacional de apoio a ideias inovadoras com recursos não reembolsáveis
+governo;Start-Up Chile;Chile|Global;Santiago;pre_seed|seed;true;;Programa do governo chileno que apoia startups do mundo todo sem participação societária
