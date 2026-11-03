@@ -1,5 +1,6 @@
-gradio==5.20.1
-chromadb
-sentence-transformers
-openai
-deep-translator
+gradio==6.30.0
+chromadb==1.5.9
+openai==3.36.1
+deep-translator==1.11.4
+fastapi==0.159.1
+uvicorn

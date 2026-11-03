@@ -1,13 +1,21 @@
 import os
-# Otimização para o Render (evita que a IA trave o processador fraquinho)
+# Otimização para máquinas fracas (evita que a IA trave o processador)
 os.environ["OMP_NUM_THREADS"] = "1"
 os.environ["TOKENIZERS_PARALLELISM"] = "false"
 
+import threading
+from pathlib import Path
+
 import chromadb
 import gradio as gr
-from openai import OpenAI
-from sentence_transformers import SentenceTransformer
 from deep_translator import GoogleTranslator
+from fastapi import FastAPI
+from fastapi.responses import FileResponse
+from fastapi.staticfiles import StaticFiles
+from openai import OpenAI
+
+BASE_DIR = Path(__file__).parent
+STATIC_DIR = BASE_DIR / "static"
 
 # ✅ Lê a chave da variável de ambiente
 GROQ_API_KEY = os.environ.get("GROQ_API_KEY", "")
@@ -17,58 +25,39 @@ llm = OpenAI(
     base_url="https://api.groq.com/openai/v1",
 )
 
-# Carrega o modelo e o banco
-model = SentenceTransformer("all-MiniLM-L6-v2")
-client = chromadb.PersistentClient(path="./chroma_db")
-collection = client.get_collection("yc_startups")
+# Carrega o banco em segundo plano: o servidor sobe na hora e a página inicial
+# abre enquanto o modelo de embeddings (ONNX, sem torch) é preparado.
+# O embedding padrão do Chroma é o mesmo all-MiniLM-L6-v2 usado no build_db.py.
+_recursos = {}
+_pronto = threading.Event()
 
-CSS = """
-.gradio-container { max-width: 900px !important; margin: auto; }
-.header {
-    text-align: center;
-    padding: 1.5rem;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    border-radius: 12px;
-    margin-bottom: 1rem;
-    color: white;
-}
-.header h1 { color: white; font-size: 2.5rem; margin-bottom: 0.5rem; }
-.examples {
-    margin-top: 15px;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    justify-content: center;
-}
-.examples::before {
-    content: "💡 Exemplos de perguntas:";
-    width: 100%;
-    text-align: center;
-    font-weight: bold;
-    color: #555;
-    margin-bottom: 5px;
-    font-size: 0.9rem;
-}
-.examples button {
-    background-color: #f3f4f6 !important;
-    border: 1px solid #d1d5db !important;
-    border-radius: 20px !important;
-    padding: 8px 16px !important;
-    font-size: 0.9rem !important;
-    transition: all 0.2s ease !important;
-}
-.examples button:hover {
-    background-color: #dbeafe !important;
-    border-color: #3b82f6 !important;
-    color: #1e40af !important;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
-}
-"""
+
+def _carregar_banco():
+    try:
+        # Caminho relativo: o Chroma falha com acentos no caminho absoluto (ex.: "Usuário")
+        client = chromadb.PersistentClient(path=os.path.relpath(BASE_DIR / "chroma_db"))
+        collection = client.get_collection("yc_startups")
+        collection.query(query_texts=["aquecimento"], n_results=1)
+        _recursos["collection"] = collection
+    except Exception as e:
+        _recursos["erro"] = e
+    finally:
+        _pronto.set()
+
+
+threading.Thread(target=_carregar_banco, daemon=True).start()
+
 
 def responder_chat(mensagem, historico):
     if not mensagem or not mensagem.strip():
         yield "⚠️ Digite uma pergunta para começar."
+        return
+
+    if not _pronto.is_set():
+        yield "⏳ Preparando a base de startups, só um instante..."
+        _pronto.wait()
+    if "erro" in _recursos:
+        yield f"⚠️ Erro ao carregar a base de startups: {_recursos['erro']}"
         return
 
     try:
@@ -76,8 +65,7 @@ def responder_chat(mensagem, historico):
     except Exception:
         mensagem_en = mensagem
 
-    q_emb = model.encode(mensagem_en).tolist()
-    res = collection.query(query_embeddings=[q_emb], n_results=8)
+    res = _recursos["collection"].query(query_texts=[mensagem_en], n_results=8)
 
     contexto = "\n".join(
         f"- {meta['name']} ({meta['batch']}, {meta['industry']}): {doc}"
@@ -125,33 +113,107 @@ Seja direto, sem floreio. Não invente startups que não estão na lista. Se a l
     except Exception as e:
         yield f"⚠️ Erro ao consultar a IA: {e}"
 
-demo = gr.ChatInterface(
-    fn=responder_chat,
-    title="🌎 Tropicalize",
-    description="""
-    <div style="text-align: center; margin-bottom: 20px;">
-        <h2 style="font-size: 1.6rem; font-weight: 700; color: #4b5563; margin-bottom: 10px;">
-            O que funcionou lá fora e ainda não existe no Brasil?
-        </h2>
-        <p style="font-size: 1rem; color: #6b7280;">
-            Digite qualquer tema de negócio e a IA vai buscar startups parecidas na base da Y Combinator para analisar o gap brasileiro.
-        </p>
+
+def analisar_tema_da_url(request: gr.Request):
+    """Quando o usuário vem da página inicial (/chat?q=...), já dispara a análise."""
+    tema = (request.query_params.get("q") or "").strip()
+    if not tema:
+        yield gr.skip()
+        return
+    historico = [{"role": "user", "content": tema}]
+    for parcial in responder_chat(tema, []):
+        yield historico + [{"role": "assistant", "content": parcial}]
+
+
+TEMA = gr.themes.Soft(
+    primary_hue=gr.themes.colors.emerald,
+    neutral_hue=gr.themes.colors.stone,
+    font=[gr.themes.GoogleFont("Inter"), "system-ui", "sans-serif"],
+).set(
+    body_background_fill="#FBF7EF",
+    button_primary_background_fill="#0E3B2C",
+    button_primary_background_fill_hover="#17513D",
+    button_primary_text_color="#FFFFFF",
+    block_radius="16px",
+)
+
+CSS = """
+.gradio-container { max-width: 900px !important; margin: auto; }
+footer { display: none !important; }
+.topo { display: flex; align-items: center; justify-content: space-between; padding: 8px 4px 4px; }
+.topo a { text-decoration: none; }
+.marca { display: flex; align-items: center; gap: 10px; font-family: "Fraunces", Georgia, serif;
+         font-size: 1.35rem; font-weight: 700; color: #0E3B2C; }
+.marca img { width: 34px; height: 34px; }
+.voltar { color: #5B6B63; font-size: 0.92rem; }
+.voltar:hover { color: #0E3B2C; }
+.intro { text-align: center; margin: 6px 0 4px; }
+.intro h2 { font-family: "Fraunces", Georgia, serif; font-size: 1.6rem; color: #0E3B2C; margin-bottom: 4px; }
+.intro p { color: #5B6B63; font-size: 0.98rem; }
+"""
+
+HEAD = """
+<link rel="icon" href="/static/logo.svg" type="image/svg+xml">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,700&display=swap" rel="stylesheet">
+"""
+
+with gr.Blocks(title="Tropicalize · Chat") as demo:
+    gr.HTML("""
+    <div class="topo">
+        <a href="/" class="marca"><img src="/static/logo.svg" alt="">tropicalize</a>
+        <a href="/" class="voltar">← Página inicial</a>
     </div>
-    """,
-    examples=[
-        "Ferramentas para gestão financeira de freelancers",
-        "IA para revisão de documentos jurídicos",
-        "Marketplace para serviços domésticos",
-        "Software B2B para o mercado imobiliário",
-        "Análise de assinaturas para SaaS",
-    ],
-    textbox=gr.Textbox(
-        placeholder="Digite sua pergunta aqui...", 
-        container=False, 
-        scale=7
-    ),
+    <div class="intro">
+        <h2>O que funcionou lá fora e ainda não existe no Brasil?</h2>
+        <p>Digite um tema de negócio e a IA busca startups parecidas na base da Y Combinator para analisar o gap brasileiro.</p>
+    </div>
+    """)
+    chat = gr.ChatInterface(
+        fn=responder_chat,
+        chatbot=gr.Chatbot(show_label=False),
+        examples=[
+            "Ferramentas para gestão financeira de freelancers",
+            "IA para revisão de documentos jurídicos",
+            "Marketplace para serviços domésticos",
+            "Software B2B para o mercado imobiliário",
+            "Análise de assinaturas para SaaS",
+        ],
+        examples_label="💡 Exemplos de perguntas",
+        textbox=gr.Textbox(
+            placeholder="Digite um tema de negócio...",
+            container=False,
+            scale=7,
+        ),
+    )
+    demo.load(analisar_tema_da_url, None, chat.chatbot).then(
+        lambda historico: historico, chat.chatbot, chat.chatbot_state
+    ).then(
+        None, js="() => window.history.replaceState(null, '', window.location.pathname)"
+    )
+
+demo.queue()
+
+app = FastAPI()
+app.mount("/static", StaticFiles(directory=STATIC_DIR), name="static")
+
+
+@app.get("/", include_in_schema=False)
+def pagina_inicial():
+    return FileResponse(STATIC_DIR / "index.html")
+
+
+@app.get("/healthz", include_in_schema=False)
+def healthz():
+    return {"ok": True, "base_pronta": "collection" in _recursos}
+
+
+app = gr.mount_gradio_app(
+    app, demo, path="/chat",
+    theme=TEMA, css=CSS, head=HEAD,
+    footer_links=[],
 )
 
 if __name__ == "__main__":
+    import uvicorn
     port = int(os.environ.get("PORT", 7860))
-    demo.launch(server_name="0.0.0.0", server_port=port)
+    uvicorn.run(app, host="0.0.0.0", port=port)

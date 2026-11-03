@@ -12,7 +12,7 @@ imagem = (
     # Node para o servidor MCP do NUVC (stdio), instalado globalmente para subir rápido
     .apt_install("nodejs", "npm")
     .run_commands("npm install -g nuvc-mcp@1.4.1")
-    .uv_pip_install_from_requirements("requirements.txt")
+    .pip_install_from_requirements("requirements.txt")
     .add_local_dir("dados", remote_path="/root/dados")
     .add_local_python_source("tropicalize")
 )
